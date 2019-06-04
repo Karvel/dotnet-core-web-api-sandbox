@@ -1,0 +1,23 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - ${SERVER_PORT}
+    depends_on:
+      - db
+    networks:
+      - backend
+    volumes:
+      - ${SERVER_VOLUME}
+  db:
+    image: "mcr.microsoft.com/mssql/server"
+    ports:
+      - ${DB_PORT}
+    networks:
+      - backend
+    environment:
+      SA_PASSWORD: ${DB_PASSWORD}
+      ACCEPT_EULA: ${DB_ACCEPT_EULA}
+networks:
+  backend:
