@@ -10,9 +10,11 @@ namespace Sandbox.Models.Repository
         public UnitOfWork(UserContext context)
         {
             _context = context;
+            Roles = new RoleRepository(_context);
             Users = new UserRepository(_context);
         }
 
+        public IRoleRepository Roles { get; }
         public IUserRepository Users { get; }
 
         public int Complete()
