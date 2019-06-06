@@ -32,6 +32,24 @@ namespace Sandbox.Models
                 FirstName= "Elanna",
                 LastName= "Grossman",
                 PasswordHash = null,
+            }, new User.UserEntity
+            {
+                UserId = 2,
+                Email = "admin@admin.com",
+                FirstName= "Corey",
+                LastName= "Shuman",
+                PasswordHash = null,
+            });
+            modelBuilder.Entity<UserRole.UserRoleEntity>().HasData(new UserRole.UserRoleEntity
+            {
+                UserRoleId = 1,
+                UserId = 1,
+                RoleId = 2,
+            }, new UserRole.UserRoleEntity
+            {
+                UserRoleId = 2,
+                UserId = 2,
+                RoleId = 1,
             });
         }
     }
