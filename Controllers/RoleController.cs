@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Sandbox.Models;
+using Sandbox.Models.Role;
 using Sandbox.Models.Repository;
 using Microsoft.AspNetCore.Mvc;
  
@@ -20,7 +20,7 @@ namespace Sandbox.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<Role> roles = _roleRepository.GetAll();
+            IEnumerable<RoleEntity> roles = _roleRepository.GetAll();
             return Ok(roles);
         }
     }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Sandbox.Models.Repository;
+using Sandbox.Models.Role;
 
 namespace Sandbox.Models.DataManager
 {
@@ -14,7 +15,7 @@ namespace Sandbox.Models.DataManager
 			_unitOfWork = unitOfWork;
 		}
 
-		public IEnumerable<Role> GetRoles()
+		public IEnumerable<RoleEntity> GetRoles()
 		{
 			return _unitOfWork.Roles.GetAll();
 		}
