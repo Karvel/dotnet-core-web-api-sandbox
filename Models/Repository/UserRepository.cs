@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Sandbox.Models;
+
 using Sandbox.Models.Repository;
+using Sandbox.Models.User;
 
 namespace Sandbox.Models.Repository
 {
-    public class UserRepository : Repository<User>, IUserRepository
+    public class UserRepository : Repository<UserEntity>, IUserRepository
     {
 		readonly UserContext _userContext;
 
@@ -16,12 +17,12 @@ namespace Sandbox.Models.Repository
             _userContext = context;
         }
 
-        public IEnumerable<User> GetUsersWithRoles()
+        public IEnumerable<UserEntity> GetUsersWithRoles()
         {
             return _userContext.Users.ToList();
         }
 
-		public User GetUserWithRole(int id)
+		public UserEntity GetUserWithRole(int id)
         {
             return _userContext.Users.FirstOrDefault(user => user.UserId == id);
         }

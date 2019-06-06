@@ -9,7 +9,7 @@ namespace Sandbox.Models
         {
         }
  
-        public DbSet<User> Users { get; set; }
+        public DbSet<User.UserEntity> Users { get; set; }
 		public DbSet<Role> Roles { get; set; }
 		public DbSet<UserRole> UserRoles { get; set; }
 
@@ -25,7 +25,7 @@ namespace Sandbox.Models
                 Name = "Consumer",
                 Description= "",
             });
-            modelBuilder.Entity<User>().HasData(new User
+            modelBuilder.Entity<User.UserEntity>().HasData(new User.UserEntity
             {
                 UserId = 1,
                 Email = "test@test.com",

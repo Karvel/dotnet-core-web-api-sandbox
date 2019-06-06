@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Sandbox.Models.Repository;
+using Sandbox.Models.User;
 
 namespace Sandbox.Models.DataManager
 {
@@ -14,23 +15,23 @@ namespace Sandbox.Models.DataManager
 			_unitOfWork = unitOfWork;
 		}
 
-		public IEnumerable<User> GetUsers()
+		public IEnumerable<UserEntity> GetUsers()
 		{
-			return _unitOfWork.Users.GetAll();
+			return _unitOfWork.Users.GetUsersWithRoles();
 		}
 
-		public User Get(int id)
+		public UserEntity Get(int id)
 		{
-			return _unitOfWork.Users.GetById(id);
+			return _unitOfWork.Users.GetUserWithRole(id);
 		}
 
-		public void AddUser(User entity)
+		public void AddUser(UserEntity entity)
 		{
 			_unitOfWork.Users.Add(entity);
 			_unitOfWork.Complete();
 		}
 
-		public void UpdateUser(User user, User entity)
+		public void UpdateUser(UserEntity user, UserEntity entity)
 		{
 			user.FirstName = entity.FirstName;
 			user.LastName = entity.LastName;
@@ -39,7 +40,7 @@ namespace Sandbox.Models.DataManager
 			_unitOfWork.Complete();
 		}
 
-		public void DeleteUser(User user)
+		public void DeleteUser(UserEntity user)
 		{
 			_unitOfWork.Users.Delete(user);
 			_unitOfWork.Complete();

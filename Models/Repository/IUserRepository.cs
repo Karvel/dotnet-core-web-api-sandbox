@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 
+using Sandbox.Models.User;
+
 namespace Sandbox.Models.Repository
 {
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IRepository<UserEntity>
     {
-        IEnumerable<User> GetUsersWithRoles();
-		User GetUserWithRole(int id);
+        IEnumerable<UserEntity> GetUsersWithRoles();
+		UserEntity GetUserWithRole(int id);
     }
 }

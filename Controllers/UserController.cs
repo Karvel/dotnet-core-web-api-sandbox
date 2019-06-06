@@ -1,7 +1,8 @@
-using System.Collections.Generic;
-using Sandbox.Models;
-using Sandbox.Models.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+
+using Sandbox.Models.User;
+using Sandbox.Models.Repository;
  
 namespace Sandbox.Controllers
 {
@@ -20,7 +21,7 @@ namespace Sandbox.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            IEnumerable<User> users = _userRepository.GetUsersWithRoles();
+            IEnumerable<UserEntity> users = _userRepository.GetUsersWithRoles();
             return Ok(users);
         }
  
@@ -28,7 +29,7 @@ namespace Sandbox.Controllers
         [HttpGet("{id}", Name = "Get")]
         public IActionResult Get(int id)
         {
-            User user = _userRepository.GetUserWithRole(id);
+            UserEntity user = _userRepository.GetUserWithRole(id);
  
             if (user == null)
             {
@@ -40,7 +41,7 @@ namespace Sandbox.Controllers
  
         // POST: api/User
         [HttpPost]
-        public IActionResult Post([FromBody] User user)
+        public IActionResult Post([FromBody] UserEntity user)
         {
             if (user == null)
             {
@@ -56,14 +57,14 @@ namespace Sandbox.Controllers
  
         // PUT: api/User/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] User user)
+        public IActionResult Put(int id, [FromBody] UserEntity user)
         {
             if (user == null)
             {
                 return BadRequest("User is null.");
             }
  
-            User userToUpdate = _userRepository.GetUserWithRole(id);
+            UserEntity userToUpdate = _userRepository.GetUserWithRole(id);
             if (userToUpdate == null)
             {
                 return NotFound("The User record couldn't be found.");
@@ -77,7 +78,7 @@ namespace Sandbox.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            User user = _userRepository.GetUserWithRole(id);
+            UserEntity user = _userRepository.GetUserWithRole(id);
             if (user == null)
             {
                 return NotFound("The User record couldn't be found.");
