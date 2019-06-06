@@ -5,44 +5,44 @@ using Sandbox.Models.Repository;
 
 namespace Sandbox.Models.DataManager
 {
-	public class UserManager : IDataRepository<User>
+	public class UserManager : UserRepository
 	{
-		readonly UserContext _userContext;
+		readonly IUnitOfWork _unitOfWork;
 
-		public UserManager(UserContext context)
+		public UserManager(UserContext context, IUnitOfWork unitOfWork) : base(context)
 		{
-			_userContext = context;
+			_unitOfWork = unitOfWork;
 		}
 
-		public IEnumerable<User> GetAll()
+		public IEnumerable<User> GetUsers()
 		{
-			return _userContext.Users.ToList();
+			return _unitOfWork.Users.GetAll();
 		}
 
-		public User Get(long id)
+		public User Get(int id)
 		{
-			return _userContext.Users
-				  .FirstOrDefault(e => e.UserId == id);
+			return _unitOfWork.Users.GetById(id);
 		}
 
-		public void Add(User entity)
+		public void AddUser(User entity)
 		{
-			_userContext.Users.Add(entity);
-			_userContext.SaveChanges();
+			_unitOfWork.Users.Add(entity);
+			_unitOfWork.Complete();
 		}
 
-		public void Update(User user, User entity)
+		public void UpdateUser(User user, User entity)
 		{
 			user.FirstName = entity.FirstName;
 			user.LastName = entity.LastName;
 			user.Email = entity.Email;
-			_userContext.SaveChanges();
+			_unitOfWork.Users.Update(user, entity);
+			_unitOfWork.Complete();
 		}
 
-		public void Delete(User user)
+		public void DeleteUser(User user)
 		{
-			_userContext.Users.Remove(user);
-			_userContext.SaveChanges();
+			_unitOfWork.Users.Delete(user);
+			_unitOfWork.Complete();
 		}
 	}
 }
