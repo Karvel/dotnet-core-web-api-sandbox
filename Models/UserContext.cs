@@ -11,7 +11,7 @@ namespace Sandbox.Models
  
         public DbSet<User.UserEntity> Users { get; set; }
 		public DbSet<Role.RoleEntity> Roles { get; set; }
-		public DbSet<UserRole> UserRoles { get; set; }
+		public DbSet<UserRole.UserRoleEntity> UserRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Role.RoleEntity>().HasData(new Role.RoleEntity
