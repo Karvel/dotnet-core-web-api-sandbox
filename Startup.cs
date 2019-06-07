@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using AutoMapper;
+using Swashbuckle.AspNetCore.Swagger;
 
 using Sandbox.Models;
 using Sandbox.Models.DataManager;
@@ -40,8 +41,15 @@ namespace Sandbox
             services.AddScoped<IRoleRepository, RoleManager>();
             services.AddScoped<IUserRepository, UserManager>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddAutoMapper();
+            services.AddSwaggerGen(config => {  
+                config.SwaggerDoc("v1", new Info {  
+                    Version = "v1",  
+                    Title = "Sandbox API",  
+                    Description = "ASP.NET Core Web API for Sandbox"  
+                });  
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +66,15 @@ namespace Sandbox
             }
 
             app.UseHttpsRedirection();
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sandbox API V1");
+            });
             app.UseMvc();
         }
     }
