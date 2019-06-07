@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using AutoMapper;
+
 using Sandbox.Models.Repository;
 using Sandbox.Models.User;
 
@@ -9,9 +11,11 @@ namespace Sandbox.Models.DataManager
 	public class UserManager : UserRepository
 	{
 		readonly IUnitOfWork _unitOfWork;
+		private readonly IMapper _mapper;
 
-		public UserManager(UserContext context, IUnitOfWork unitOfWork) : base(context)
+		public UserManager(UserContext context, IMapper mapper, IUnitOfWork unitOfWork) : base(context)
 		{
+			_mapper = mapper;
 			_unitOfWork = unitOfWork;
 		}
 
