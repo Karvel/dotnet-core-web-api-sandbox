@@ -6,7 +6,7 @@ namespace Sandbox.Models.UserRole
 {
     public class UserRoleEntity
     {
-        public int UserRoleId { get; set; }
+        public int Id { get; set; }
         public int UserId { get; set; }
         public User.UserEntity User { get; set; }
         public int RoleId { get; set; }

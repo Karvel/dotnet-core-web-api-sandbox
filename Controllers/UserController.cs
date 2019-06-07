@@ -19,6 +19,7 @@ namespace Sandbox.Controllers
  
         // GET: api/User
         [HttpGet]
+        [ProducesResponseType(typeof(UserEntity), 200)]
         public IActionResult Get()
         {
             IEnumerable<UserEntity> users = _userRepository.GetUsersWithRoles();
@@ -27,6 +28,8 @@ namespace Sandbox.Controllers
  
         // GET: api/User/5
         [HttpGet("{id}", Name = "Get")]
+        [ProducesResponseType(typeof(UserEntity), 200)]
+        [ProducesResponseType(typeof(IDictionary<string, string>), 400)]
         public IActionResult Get(int id)
         {
             UserEntity user = _userRepository.GetUserWithRole(id);
@@ -41,6 +44,8 @@ namespace Sandbox.Controllers
  
         // POST: api/User
         [HttpPost]
+        [ProducesResponseType(typeof(UserEntity), 201)]
+        [ProducesResponseType(typeof(IDictionary<string, string>), 400)]
         public IActionResult Post([FromBody] UserEntity user)
         {
             if (user == null)
@@ -51,7 +56,7 @@ namespace Sandbox.Controllers
             _userRepository.Add(user);
             return CreatedAtRoute(
                   "Get", 
-                  new { Id = user.UserId },
+                  new { Id = user.Id },
                   user);
         }
  
@@ -76,6 +81,8 @@ namespace Sandbox.Controllers
  
         // DELETE: api/User/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(void), 204)]
+        [ProducesResponseType(typeof(IDictionary<string, string>), 400)]
         public IActionResult Delete(int id)
         {
             UserEntity user = _userRepository.GetUserWithRole(id);
