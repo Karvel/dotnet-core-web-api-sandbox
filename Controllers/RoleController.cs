@@ -18,6 +18,7 @@ namespace Sandbox.Controllers
  
         // GET: api/Role
         [HttpGet]
+        [ProducesResponseType(typeof(RoleEntity), 200)]
         public IActionResult Get()
         {
             IEnumerable<RoleEntity> roles = _roleRepository.GetAll();
