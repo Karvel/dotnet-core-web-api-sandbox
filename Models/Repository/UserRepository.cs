@@ -24,7 +24,7 @@ namespace Sandbox.Models.Repository
 
 		public UserEntity GetUserWithRole(int id)
         {
-            return _userContext.Users.FirstOrDefault(user => user.UserId == id);
+            return _userContext.Users.FirstOrDefault(user => user.Id == id);
         }
     }
 }

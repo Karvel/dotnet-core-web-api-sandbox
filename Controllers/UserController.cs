@@ -51,7 +51,7 @@ namespace Sandbox.Controllers
             _userRepository.Add(user);
             return CreatedAtRoute(
                   "Get", 
-                  new { Id = user.UserId },
+                  new { Id = user.Id },
                   user);
         }
  
