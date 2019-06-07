@@ -1,8 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Sandbox.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +11,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+
+using AutoMapper;
+
+using Sandbox.Models;
+using Sandbox.Models.DataManager;
+using Sandbox.Models.Repository;
 
 namespace Sandbox
 {
@@ -30,7 +35,12 @@ namespace Sandbox
             var hostname = Environment.GetEnvironmentVariable("SQLSERVER_HOST") ?? "localhost";
             var password = Environment.GetEnvironmentVariable("SQLSERVER_SA_PASSWORD");
             var connString = $"Server={hostname};User ID=sa;Password={password};";
+
             services.AddDbContext<UserContext>(opts => opts.UseSqlServer(connString));
+            services.AddScoped<IRoleRepository, RoleManager>();
+            services.AddScoped<IUserRepository, UserManager>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
