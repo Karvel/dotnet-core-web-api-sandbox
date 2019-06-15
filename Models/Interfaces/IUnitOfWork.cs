@@ -1,6 +1,6 @@
 using System;
 
-namespace Sandbox.Models.Repository
+namespace Sandbox.Models.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

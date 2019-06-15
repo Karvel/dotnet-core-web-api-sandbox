@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 using Sandbox.Models.User;
 
-namespace Sandbox.Models.Repository
+namespace Sandbox.Models.Interfaces
 {
     public interface IUserRepository : IRepository<UserEntity>
     {

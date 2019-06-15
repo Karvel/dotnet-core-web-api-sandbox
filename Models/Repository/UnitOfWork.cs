@@ -1,5 +1,5 @@
 using Sandbox.Models;
-using Sandbox.Models.Repository;
+using Sandbox.Models.Interfaces;
 
 namespace Sandbox.Models.Repository
 {

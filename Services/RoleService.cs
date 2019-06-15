@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 
 using Sandbox.Models.Interfaces;
-using Sandbox.Models.Repository;
 using Sandbox.Models.Role;
 
 namespace Sandbox.Services

@@ -1,9 +1,5 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Sandbox.Models.Role;
-using Sandbox.Models.Repository;
+using Sandbox.Models.Interfaces;
 
 namespace Sandbox.Models.Repository
 {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace Sandbox.Models.Repository
+namespace Sandbox.Models.Interfaces
 {
     public interface IRepository<T>
     {

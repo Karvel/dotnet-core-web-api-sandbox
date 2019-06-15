@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using AutoMapper;
 
 using Sandbox.Models.Interfaces;
-using Sandbox.Models.Repository;
 using Sandbox.Models.User;
 
 namespace Sandbox.Services

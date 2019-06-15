@@ -4,7 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using Sandbox.Models.Repository;
+
+using Sandbox.Models.Interfaces;
 
 namespace Sandbox.Models.Repository
 {
