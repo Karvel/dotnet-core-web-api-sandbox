@@ -4,7 +4,7 @@ using Sandbox.Models.Interfaces;
 using Sandbox.Models.Repository;
 using Sandbox.Models.Role;
 
-namespace Sandbox.Models.Services
+namespace Sandbox.Services
 {
 	public class RoleService : IRoleService
 	{

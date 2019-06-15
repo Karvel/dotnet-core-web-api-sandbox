@@ -6,7 +6,7 @@ using Sandbox.Models.Interfaces;
 using Sandbox.Models.Repository;
 using Sandbox.Models.User;
 
-namespace Sandbox.Models.Services
+namespace Sandbox.Services
 {
 	public class UserService : IUserService
 	{
