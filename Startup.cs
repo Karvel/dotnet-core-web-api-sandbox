@@ -17,6 +17,7 @@ using Swashbuckle.AspNetCore.Swagger;
 
 using Sandbox.Models;
 using Sandbox.Models.DataManager;
+using Sandbox.Models.Interfaces;
 using Sandbox.Models.Repository;
 
 namespace Sandbox
@@ -40,6 +41,8 @@ namespace Sandbox
             services.AddDbContext<UserContext>(opts => opts.UseSqlServer(connString));
             services.AddScoped<IRoleManager, RoleManager>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IUserManager, UserManager>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAutoMapper();

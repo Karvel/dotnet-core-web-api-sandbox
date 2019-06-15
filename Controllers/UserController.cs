@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
+using Sandbox.Models.Interfaces;
 using Sandbox.Models.User;
-using Sandbox.Models.Repository;
  
 namespace Sandbox.Controllers
 {
@@ -10,19 +10,19 @@ namespace Sandbox.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUserManager _userManager;
  
-        public UserController(IUserRepository userRepository)
+        public UserController(IUserManager userManager)
         {
-            _userRepository = userRepository;
+            _userManager = userManager;
         }
  
         // GET: api/User
         [HttpGet]
         [ProducesResponseType(typeof(UserEntity), 200)]
-        public IActionResult Get()
+        public ActionResult<IEnumerable<UserEntity>> Get()
         {
-            IEnumerable<UserEntity> users = _userRepository.GetUsersWithRoles();
+            IEnumerable<UserEntity> users = _userManager.GetUsers();
             return Ok(users);
         }
  
@@ -30,9 +30,9 @@ namespace Sandbox.Controllers
         [HttpGet("{id}", Name = "Get")]
         [ProducesResponseType(typeof(UserEntity), 200)]
         [ProducesResponseType(typeof(IDictionary<string, string>), 400)]
-        public IActionResult Get(int id)
+        public ActionResult<UserEntity> Get(int id)
         {
-            UserEntity user = _userRepository.GetUserWithRole(id);
+            UserEntity user = _userManager.GetUser(id);
  
             if (user == null)
             {
@@ -46,14 +46,14 @@ namespace Sandbox.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(UserEntity), 201)]
         [ProducesResponseType(typeof(IDictionary<string, string>), 400)]
-        public IActionResult Post([FromBody] UserEntity user)
+        public ActionResult<UserEntity> Post([FromBody] UserEntity user)
         {
             if (user == null)
             {
                 return BadRequest("User is null.");
             }
  
-            _userRepository.Add(user);
+            _userManager.AddUser(user);
             return CreatedAtRoute(
                   "Get", 
                   new { Id = user.Id },
@@ -69,13 +69,13 @@ namespace Sandbox.Controllers
                 return BadRequest("User is null.");
             }
  
-            UserEntity userToUpdate = _userRepository.GetUserWithRole(id);
+            UserEntity userToUpdate = _userManager.GetUser(id);
             if (userToUpdate == null)
             {
                 return NotFound("The User record couldn't be found.");
             }
  
-            _userRepository.Update(userToUpdate, user);
+            _userManager.UpdateUser(userToUpdate, user);
             return NoContent();
         }
  
@@ -85,13 +85,13 @@ namespace Sandbox.Controllers
         [ProducesResponseType(typeof(IDictionary<string, string>), 400)]
         public IActionResult Delete(int id)
         {
-            UserEntity user = _userRepository.GetUserWithRole(id);
+            UserEntity user = _userManager.GetUser(id);
             if (user == null)
             {
                 return NotFound("The User record couldn't be found.");
             }
  
-            _userRepository.Delete(user);
+            _userManager.DeleteUser(user);
             return NoContent();
         }
     }
