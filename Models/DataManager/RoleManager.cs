@@ -1,16 +1,16 @@
 using System.Collections.Generic;
-using System.Linq;
 
+using Sandbox.Models.Interfaces;
 using Sandbox.Models.Repository;
 using Sandbox.Models.Role;
 
 namespace Sandbox.Models.DataManager
 {
-	public class RoleManager : RoleRepository
+	public class RoleManager : IRoleManager
 	{
 		readonly IUnitOfWork _unitOfWork;
 
-		public RoleManager(UserContext context, IUnitOfWork unitOfWork) : base(context)
+		public RoleManager(IUnitOfWork unitOfWork)
 		{
 			_unitOfWork = unitOfWork;
 		}
