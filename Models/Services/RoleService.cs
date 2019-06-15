@@ -4,13 +4,13 @@ using Sandbox.Models.Interfaces;
 using Sandbox.Models.Repository;
 using Sandbox.Models.Role;
 
-namespace Sandbox.Models.DataManager
+namespace Sandbox.Models.Services
 {
-	public class RoleManager : IRoleManager
+	public class RoleService : IRoleService
 	{
 		readonly IUnitOfWork _unitOfWork;
 
-		public RoleManager(IUnitOfWork unitOfWork)
+		public RoleService(IUnitOfWork unitOfWork)
 		{
 			_unitOfWork = unitOfWork;
 		}

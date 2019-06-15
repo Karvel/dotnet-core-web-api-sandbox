@@ -10,11 +10,11 @@ namespace Sandbox.Controllers
     [ApiController]
     public class RoleController : ControllerBase
     {
-        private readonly IRoleManager _roleManager;
+        private readonly IRoleService _roleService;
 
-        public RoleController(IRoleManager roleManager)
+        public RoleController(IRoleService roleService)
         {
-            _roleManager = roleManager;
+            _roleService = roleService;
         }
   
         // GET: api/Role
@@ -22,7 +22,7 @@ namespace Sandbox.Controllers
         [ProducesResponseType(typeof(RoleEntity), 200)]
         public IActionResult Get()
         {
-            IEnumerable<RoleEntity> roles = _roleManager.GetRoles();
+            IEnumerable<RoleEntity> roles = _roleService.GetRoles();
             return Ok(roles);
         }
     }

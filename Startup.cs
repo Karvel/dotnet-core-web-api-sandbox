@@ -16,7 +16,7 @@ using AutoMapper;
 using Swashbuckle.AspNetCore.Swagger;
 
 using Sandbox.Models;
-using Sandbox.Models.DataManager;
+using Sandbox.Models.Services;
 using Sandbox.Models.Interfaces;
 using Sandbox.Models.Repository;
 
@@ -39,9 +39,9 @@ namespace Sandbox
             var connString = $"Server={hostname};User ID=sa;Password={password};";
 
             services.AddDbContext<UserContext>(opts => opts.UseSqlServer(connString));
-            services.AddScoped<IRoleManager, RoleManager>();
+            services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<IUserManager, UserManager>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

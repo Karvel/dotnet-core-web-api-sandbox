@@ -4,7 +4,7 @@ using Sandbox.Models.Role;
 
 namespace Sandbox.Models.Interfaces
 {
-	public interface IRoleManager
+	public interface IRoleService
 	{
 		IEnumerable<RoleEntity> GetRoles();
 	}

@@ -6,14 +6,14 @@ using Sandbox.Models.Interfaces;
 using Sandbox.Models.Repository;
 using Sandbox.Models.User;
 
-namespace Sandbox.Models.DataManager
+namespace Sandbox.Models.Services
 {
-	public class UserManager : IUserManager
+	public class UserService : IUserService
 	{
 		readonly IUnitOfWork _unitOfWork;
 		private readonly IMapper _mapper;
 
-		public UserManager(IMapper mapper, IUnitOfWork unitOfWork)
+		public UserService(IMapper mapper, IUnitOfWork unitOfWork)
 		{
 			_mapper = mapper;
 			_unitOfWork = unitOfWork;

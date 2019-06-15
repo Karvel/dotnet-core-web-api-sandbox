@@ -4,7 +4,7 @@ using Sandbox.Models.User;
 
 namespace Sandbox.Models.Interfaces
 {
-	public interface IUserManager
+	public interface IUserService
 	{
 		IEnumerable<UserEntity> GetUsers();
 		UserEntity GetUser(int id);

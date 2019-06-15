@@ -10,11 +10,11 @@ namespace Sandbox.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserManager _userManager;
+        private readonly IUserService _userService;
  
-        public UserController(IUserManager userManager)
+        public UserController(IUserService userService)
         {
-            _userManager = userManager;
+            _userService = userService;
         }
  
         // GET: api/User
@@ -22,7 +22,7 @@ namespace Sandbox.Controllers
         [ProducesResponseType(typeof(UserEntity), 200)]
         public ActionResult<IEnumerable<UserEntity>> Get()
         {
-            IEnumerable<UserEntity> users = _userManager.GetUsers();
+            IEnumerable<UserEntity> users = _userService.GetUsers();
             return Ok(users);
         }
  
@@ -32,7 +32,7 @@ namespace Sandbox.Controllers
         [ProducesResponseType(typeof(IDictionary<string, string>), 400)]
         public ActionResult<UserEntity> Get(int id)
         {
-            UserEntity user = _userManager.GetUser(id);
+            UserEntity user = _userService.GetUser(id);
  
             if (user == null)
             {
@@ -53,7 +53,7 @@ namespace Sandbox.Controllers
                 return BadRequest("User is null.");
             }
  
-            _userManager.AddUser(user);
+            _userService.AddUser(user);
             return CreatedAtRoute(
                   "Get", 
                   new { Id = user.Id },
@@ -69,13 +69,13 @@ namespace Sandbox.Controllers
                 return BadRequest("User is null.");
             }
  
-            UserEntity userToUpdate = _userManager.GetUser(id);
+            UserEntity userToUpdate = _userService.GetUser(id);
             if (userToUpdate == null)
             {
                 return NotFound("The User record couldn't be found.");
             }
  
-            _userManager.UpdateUser(userToUpdate, user);
+            _userService.UpdateUser(userToUpdate, user);
             return NoContent();
         }
  
@@ -85,13 +85,13 @@ namespace Sandbox.Controllers
         [ProducesResponseType(typeof(IDictionary<string, string>), 400)]
         public IActionResult Delete(int id)
         {
-            UserEntity user = _userManager.GetUser(id);
+            UserEntity user = _userService.GetUser(id);
             if (user == null)
             {
                 return NotFound("The User record couldn't be found.");
             }
  
-            _userManager.DeleteUser(user);
+            _userService.DeleteUser(user);
             return NoContent();
         }
     }
