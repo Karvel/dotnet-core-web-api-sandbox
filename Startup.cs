@@ -38,8 +38,8 @@ namespace Sandbox
             var connString = $"Server={hostname};User ID=sa;Password={password};";
 
             services.AddDbContext<UserContext>(opts => opts.UseSqlServer(connString));
-            services.AddScoped<IRoleRepository, RoleManager>();
-            services.AddScoped<IUserRepository, UserManager>();
+            services.AddScoped<IRoleManager, RoleManager>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddAutoMapper();
