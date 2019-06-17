@@ -1,7 +1,7 @@
 using Sandbox.Models;
 using Sandbox.Models.Interfaces;
 
-namespace Sandbox.Models.Repository
+namespace Sandbox.DataAccess.Repositories
 {
     public class UnitOfWork : IUnitOfWork
     {

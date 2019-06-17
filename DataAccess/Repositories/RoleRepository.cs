@@ -1,7 +1,7 @@
 using Sandbox.Models.Role;
 using Sandbox.Models.Interfaces;
 
-namespace Sandbox.Models.Repository
+namespace Sandbox.DataAccess.Repositories
 {
     public class RoleRepository : Repository<RoleEntity>, IRoleRepository
     {

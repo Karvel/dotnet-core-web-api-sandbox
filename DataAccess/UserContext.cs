@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+
+using Sandbox.Models.Role;
+using Sandbox.Models.User;
+using Sandbox.Models.UserRole;
  
-namespace Sandbox.Models
+namespace Sandbox.DataAccess
 {
     public class UserContext : DbContext
     {
@@ -9,30 +13,30 @@ namespace Sandbox.Models
         {
         }
  
-        public DbSet<User.UserEntity> Users { get; set; }
-		public DbSet<Role.RoleEntity> Roles { get; set; }
-		public DbSet<UserRole.UserRoleEntity> UserRoles { get; set; }
+        public DbSet<UserEntity> Users { get; set; }
+		public DbSet<RoleEntity> Roles { get; set; }
+		public DbSet<UserRoleEntity> UserRoles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
-            modelBuilder.Entity<Role.RoleEntity>().HasData(new Role.RoleEntity
+            modelBuilder.Entity<RoleEntity>().HasData(new RoleEntity
             {
                 Id = 1,
                 Name = "Administrator",
                 Description= "",
-            }, new Role.RoleEntity
+            }, new RoleEntity
             {
                 Id = 2,
                 Name = "Consumer",
                 Description= "",
             });
-            modelBuilder.Entity<User.UserEntity>().HasData(new User.UserEntity
+            modelBuilder.Entity<UserEntity>().HasData(new UserEntity
             {
                 Id = 1,
                 Email = "test@test.com",
                 FirstName= "Elanna",
                 LastName= "Grossman",
                 PasswordHash = null,
-            }, new User.UserEntity
+            }, new UserEntity
             {
                 Id = 2,
                 Email = "admin@admin.com",
@@ -40,12 +44,12 @@ namespace Sandbox.Models
                 LastName= "Shuman",
                 PasswordHash = null,
             });
-            modelBuilder.Entity<UserRole.UserRoleEntity>().HasData(new UserRole.UserRoleEntity
+            modelBuilder.Entity<UserRoleEntity>().HasData(new UserRoleEntity
             {
                 Id = 1,
                 UserId = 1,
                 RoleId = 2,
-            }, new UserRole.UserRoleEntity
+            }, new UserRoleEntity
             {
                 Id = 2,
                 UserId = 2,

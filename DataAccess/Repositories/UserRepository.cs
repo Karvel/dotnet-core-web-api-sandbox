@@ -4,7 +4,7 @@ using System.Linq;
 using Sandbox.Models.Interfaces;
 using Sandbox.Models.User;
 
-namespace Sandbox.Models.Repository
+namespace Sandbox.DataAccess.Repositories
 {
     public class UserRepository : Repository<UserEntity>, IUserRepository
     {

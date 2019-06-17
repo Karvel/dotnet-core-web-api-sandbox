@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 
 using Sandbox.Models.Interfaces;
 
-namespace Sandbox.Models.Repository
+namespace Sandbox.DataAccess.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {

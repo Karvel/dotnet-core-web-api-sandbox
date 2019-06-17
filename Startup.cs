@@ -15,9 +15,9 @@ using Microsoft.Extensions.Options;
 using AutoMapper;
 using Swashbuckle.AspNetCore.Swagger;
 
-using Sandbox.Models;
+using Sandbox.DataAccess;
 using Sandbox.Models.Interfaces;
-using Sandbox.Models.Repository;
+using Sandbox.DataAccess.Repositories;
 using Sandbox.Services;
 
 namespace Sandbox
